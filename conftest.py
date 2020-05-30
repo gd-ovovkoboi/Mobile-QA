@@ -20,6 +20,7 @@ def driver_setup(request):
         'app': os.path.join(ROOT_DIR, parser.get('driver', 'app'))
     }
     request.instance.driver = webdriver.Remote(parser.get('driver', 'server_address'), desired_caps)
+    request.instance.driver.implicitly_wait(parser.getint('driver', 'implicit_wait'))
 
     def tear_down():
         request.instance.driver.quit()
