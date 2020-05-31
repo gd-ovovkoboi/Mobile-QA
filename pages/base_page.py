@@ -1,5 +1,6 @@
 import time
 
+from appium.webdriver.common.touch_action import TouchAction
 from selenium.common.exceptions import StaleElementReferenceException
 
 KEY_CODE_BACK = 4
@@ -11,6 +12,9 @@ class BasePage():
 
     def press_back_button(self):
         self.driver.keyevent(KEY_CODE_BACK)
+
+    def long_press(self, driver, element):
+        TouchAction(driver).long_press(element).perform()
 
     def wait_for_element(self, by, locator):
         for i in range(5):

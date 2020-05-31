@@ -1,10 +1,11 @@
 import allure
 from appium.webdriver.common.mobileby import MobileBy
 
-from pages.base_page import BasePage
+from pages.header_page import HeaderPage
+from pages.products_page import ProductsPage
 
 
-class ListsPage(BasePage):
+class ListsPage(HeaderPage):
     text_box_list_name = (MobileBy.ID, 'com.slava.buylist:id/editText1')
     text_box_update_list_name = (MobileBy.CLASS_NAME, 'android.widget.EditText')
     button_add_list = (MobileBy.ID, 'com.slava.buylist:id/button2')
@@ -18,8 +19,7 @@ class ListsPage(BasePage):
         self.driver.find_element(*ListsPage.button_add_list).click()
         # hide keyboard
         self.press_back_button()
-        # press back button
-        self.press_back_button()
+        return ProductsPage(self.driver)
 
     @allure.step
     def update_list(self, updated_list_name):
